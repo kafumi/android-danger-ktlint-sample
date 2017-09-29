@@ -1,0 +1,27 @@
+language: android
+branches:
+  only:
+    - master
+env:
+  global:
+    - secure: "R+epV1swhitU8JC+q5G7KX/tPCyCWqfpY3BSeWKC7qCna3V3oaXEI7TR05IYAmBvO070bwhXAPgtdImtjIKEJ+yxUVKxb1p0RNe2gjYyCGnU+nzGYor7OsfZiPweORk8l9/fgbei76MaQyvKr6l17unQSUTF5ueRIIltzpHinShJIbCLjHjDHYFjNhEqS5RqBQqG4L9FUrvn0gY1bmN6fzAZtf5FitYOX0/ZU4NVZCzHy66HeoctSUWXkw+2BEOxYoV38k6myPZxT5IT4dVfYuDMYHmm8skJ1Dq0O1ewxizxAlTp/yjTBR3oKD1M0bOGe5cLfYcDYgj+1RZHhx2hs387BTaU7PHQmKkx42UaoeoBpwSzyGyJtq1iM5hJpIqqbfEnletqyeZJL5Q6Bf0Kf01kbC/GNBtCbgde8QymiXVgVuZGuT+0YhsbtX10S+eLQH8SIOEm/c2EgjWZbCeGuHbQ8/UwO8s+farAqfodJbjHaap2azGW9aoOexoZOwvHh/bIUfXL5Cw4dBljzacCKD4JkrpoKEfA7JkwCuRvKtp5604YQA1bBOdPtmNP9qhE/a42RC9Ozuja2p6OgW7JdsZgavonZX/2UoPBUFSfFWE2zX3KE65C84sIdRjc2iFp9tDHuO7286zGEUus1cEnk8lyGgJJWxUohErV/A0sGJ8="  # DANGER_GITHUB_API_TOKEN
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-26.0.1
+    - android-26
+    - extra-android-m2repository
+install:
+  - bundle install
+script:
+  - ./gradlew assembleDebug
+  - bundle exec danger
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+    - $HOME/.android/build-cache
