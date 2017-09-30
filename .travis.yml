@@ -16,6 +16,7 @@ install:
   - bundle install
 script:
   - ./gradlew assembleDebug
+  - ./gradlew ktlintCheck || true  # Continue build even if ktlint reports errors
   - bundle exec danger
 before_cache:
   - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
