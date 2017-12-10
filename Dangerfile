@@ -6,4 +6,4 @@ warn("PR is classed as Work in Progress") if github.pr_title.include? "[WIP]"
 
 # ktlint
 checkstyle_format.base_path = Dir.pwd
-checkstyle_format.report 'app/build/reports/ktlint/ktlint.xml'
+checkstyle_format.report 'app/build/reports/ktlint/ktlint-main.xml'
